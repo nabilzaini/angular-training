@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Computer 9Generation",
+      "price": "10000",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "Printera",
+      "price": 10000,
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Iphone",
+      "price": 9000,
+      "checked": false
+    },
+    {
+      "name": "zaini",
+      "price": "120",
+      "checked": true,
+      "id": 4
+    },
+    {
+      "name": "aeae",
+      "price": 0,
+      "checked": true,
+      "id": 5
+    },
+    {
+      "name": "Computer",
+      "price": "1000",
+      "checked": true,
+      "id": 6
+    },
+    {
+      "name": "Clavier",
+      "price": "400",
+      "checked": false,
+      "id": 7
+    },
+    {
+      "name": "Souris",
+      "price": "100",
+      "checked": false,
+      "id": 8
+    },
+    {
+      "name": "Iphone Pro",
+      "price": "1200",
+      "checked": true,
+      "id": 9
+    }
+  ]
+}
