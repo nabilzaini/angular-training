@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product.model';
+import { AppstateService } from '../services/appstate.service';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -11,42 +12,35 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductsComponent implements OnInit{
 
-
-  //$ à la fin de la variable pour indiquer un observable
-  //! pour ignorer l'initialisation de la variable
-  public products: Array<Product> = [];
-  public keyword:string = '';
-  currentPage:number = 1;
-  pageSize:number = 3;
-  totalPages:number = 0;
-
-
-  constructor(private productService: ProductService, private router:Router){}
+  constructor(private productService: ProductService, private router:Router, public appStateService: AppstateService){}
 
   ngOnInit(){
     this.getProducts();
   }
 
   getProducts(){
-    this.productService.getProducts(this.keyword, this.currentPage, this.pageSize)
+    this.appStateService.state = "LOADING";
+    this.productService.getProducts(this.appStateService.keyword, this.appStateService.currentPage, this.appStateService.pageSize)
     .subscribe({
       next: response => {
-          this.products  = response.body as Product[];
-          let totalElements:number = parseInt(response.headers.get("x-total-count")!);
-          this.totalPages = Math.floor(totalElements/this.pageSize);
+          this.appStateService.products  = response.body as Product[];
+          this.appStateService.totalProducts = parseInt(response.headers.get("x-total-count")!);
+          this.appStateService.totalPages = Math.floor(this.appStateService.totalProducts/this.appStateService.pageSize);
 
-          if(totalElements % this.pageSize != 0){
-            this.totalPages = this.totalPages + 1;
+          if(this.appStateService.totalProducts % this.appStateService.pageSize != 0){
+            this.appStateService.totalPages = this.appStateService.totalPages + 1;
           }
+          this.appStateService.state = "LOADED";
       },
       error: err => {
-        console.log("Erreur");
+        this.appStateService.state = "ERROR";
+        this.appStateService.messageError = err;
       }
     });
   }
 
   handlePage(indexPage: number) {
-    this.currentPage = indexPage;
+    this.appStateService.currentPage = indexPage;
     this.getProducts();
   }
 
@@ -66,7 +60,7 @@ export class ProductsComponent implements OnInit{
     this.productService.deleteProduct(product)
     .subscribe({
       next: data => {
-        this.products = this.products.filter(p => p.id != product.id)
+        this.getProducts();
       }
     });
   }

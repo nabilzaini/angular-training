@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+        <nav class="p-3">
+            <ul class="nav nav-pills">
+                <li class="border border-info p-1 m-1 bg-dark-subtle">
+                    <label>Total products :{{appStateService.totalProducts}}</label>
+                </li>
+                <li class="border border-info p-1 m-1 bg-danger">
+                    <label>Total Pages : {{appStateService.totalPages}}</label>
+                </li>
+                <li class="border border-info p-1 m-1 bg-success">
+                    <label>Product Per Page : {{appStateService.pageSize}}</label>
+                </li>
+                <li class="border border-info p-1 m-1 bg-primary-subtle">
+                    <label>Total Checked :{{totalProductsChecked()}}</label>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

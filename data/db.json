@@ -4,25 +4,13 @@
       "id": 1,
       "name": "Computer 9Generation",
       "price": "10000",
-      "checked": false
+      "checked": true
     },
     {
       "id": 2,
       "name": "Printera",
       "price": 10000,
-      "checked": false
-    },
-    {
-      "id": 3,
-      "name": "Iphone",
-      "price": 9000,
-      "checked": false
-    },
-    {
-      "name": "zaini",
-      "price": "120",
-      "checked": true,
-      "id": 4
+      "checked": true
     },
     {
       "name": "aeae",
