@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit{
   }
 
   getProducts(){
-    this.appStateService.state = "LOADING";
+   // this.appStateService.state = "LOADING"; remplacer par l'intercepteur
     this.productService.getProducts(this.appStateService.keyword, this.appStateService.currentPage, this.appStateService.pageSize)
     .subscribe({
       next: response => {
@@ -30,7 +30,8 @@ export class ProductsComponent implements OnInit{
           if(this.appStateService.totalProducts % this.appStateService.pageSize != 0){
             this.appStateService.totalPages = this.appStateService.totalPages + 1;
           }
-          this.appStateService.state = "LOADED";
+          this.appStateService.state = "LOADED"; 
+          console.log(this.appStateService.state)
       },
       error: err => {
         this.appStateService.state = "ERROR";
